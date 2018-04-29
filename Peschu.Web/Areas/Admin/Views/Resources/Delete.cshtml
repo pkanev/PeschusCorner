@@ -1,11 +1,11 @@
 ﻿@model ResourceDetailsModel
 @{
-    ViewData["Title"] = $"Delete '{Model.Title}'";
+    ViewData["Title"] = $"Delete [{Model.Title}]";
 }
 <div class="row">
     <h2>@ViewData["Title"]</h2>
 
-    <h3>Do you want to delete '@Model.Title'?</h3>
+    <h3>Do you want to delete [@Model.Title]?</h3>
     <a asp-area="@WebConstants.AdminArea" asp-controller="Resources" asp-action="Index" class="btn btn-sm btn-default">Back to Resources</a>
     <a asp-area="@WebConstants.AdminArea" asp-controller="Resources" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-sm btn-default">Back to @Model.Title</a>
     <a asp-area="@WebConstants.AdminArea" asp-controller="Resources" asp-action="Destroy" asp-route-id="@Model.Id" class="btn btn-sm btn-danger">Delete</a>

@@ -1,13 +1,13 @@
 ﻿@model UnlinkTagModel
 @{
-    ViewData["Title"] = $"Remove '{Model.Tag.Title}' from '{Model.Article.Title}'";
+    ViewData["Title"] = $"Remove [{Model.Tag.Title}] from '{Model.Article.Title}'";
 }
 
 <h2>@ViewData["Title"]</h2>
 
 <div class="row">
     <div class="col-md-6">
-        <p>Are you certain that you want to remove the tag?</p>
+        <p>Are you certain that you want to remove [@Model.Tag.Title] from '@Model.Article.Title'?</p>
         <a class="btn btn-default"
            asp-area="Admin"
            asp-controller="Articles"
