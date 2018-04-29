@@ -12,6 +12,9 @@
 
         public IActionResult Contact() => View();
 
-        public IActionResult Error() => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        [Route("home/error/404")]
+        public IActionResult Error404() => View();
+
+        public IActionResult Error() => View();
     }
 }
