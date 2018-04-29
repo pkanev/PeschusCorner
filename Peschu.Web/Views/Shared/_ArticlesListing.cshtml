@@ -1,0 +1,42 @@
+﻿@model ICollection<ArticlesWithTagsListingModel>
+
+<div class="row" onclick="">
+    @if(Model.Count == 0)
+    {
+        <h4>There are no articles on this topic yet.</h4>
+    }
+    @foreach (var article in Model)
+    {
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <a asp-area=""
+                       asp-controller="Articles"
+                       asp-action="Read"
+                       asp-route-id="@article.Id">@article.Subject: @article.Title</a>
+                </h3>
+            </div>
+            <div class="panel-body well margin-bottom-0">                
+                <div>
+                    <label>Overview:</label>
+                    <span>@article.Description</span>
+                </div>
+                <div>
+                    <label>Posted:</label>
+                    <span>@article.Created.ToLocalTime().ToString("dd MMMM yyyy", CultureInfo.InvariantCulture)</span>
+                </div>
+                <div>
+                    @foreach (var tag in article.Tags)
+                    {
+                        <a class="btn btn-sm btn-default"
+                           asp-area=""
+                           asp-controller="Tags"
+                           asp-action="Index"
+                           asp-route-id="@tag.Id">@tag.Title</a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,23 @@
+﻿@model ResourceFormModel
+
+<div class="row">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Url"></label>
+        <input asp-for="Url" class="form-control"/>
+        <span asp-validation-for="Url" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ResourceType"></label>
+        <select asp-for="ResourceType" asp-items="Html.GetEnumSelectList<ResourceType>()" class="form-control"></select>
+        <span asp-validation-for="ResourceType" class="text-danger"></span>
+    </div>
+</div>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

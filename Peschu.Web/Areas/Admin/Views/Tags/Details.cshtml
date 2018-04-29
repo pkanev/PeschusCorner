@@ -1,0 +1,24 @@
+﻿@model AllArticlesPerTagPageListingModel
+@{
+    ViewData["Title"] = $"Articles for '{Model.Tag.Title}'";
+}
+<div class="row">
+    <div class="col-md-6">
+        <h2>
+            @ViewData["Title"]
+            <a asp-area="@WebConstants.AdminArea" asp-controller="Tags" asp-action="Edit" asp-route-id="@Model.Tag.Id" class="btn btn-warning">Edit tag</a>
+            <a asp-area="@WebConstants.AdminArea" asp-controller="Tags" asp-action="Delete" asp-route-id="@Model.Tag.Id" class="btn btn-danger">Delete tag</a>
+        </h2>
+    </div>
+</div>
+@Html.Partial("_Message")
+<div class="row">
+    <div class="col-md-10">
+        @foreach (var article in Model.Articles)
+        {
+            @await Html.PartialAsync("_ArticleList", article)
+        }
+    </div>
+</div>
+
+@Html.Partial("_Pagination", Model)

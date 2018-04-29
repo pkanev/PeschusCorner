@@ -1,0 +1,61 @@
+﻿@model ArticleFormModel
+<form method="post">
+    <div class="row">
+        <div class="col-md-4">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Subject"></label>
+                <select asp-for="Subject" asp-items="Html.GetEnumSelectList<Subject>()" class="form-control"></select>
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" rows="5" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Resources"></label>
+                <select asp-for="ResourceIds" asp-items="Model.Resources" class="form-control"></select>
+                <span asp-validation-for="Resources" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tags"></label>
+                <select asp-for="TagIds" asp-items="Model.Tags" class="form-control"></select>
+                <span asp-validation-for="Tags" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="form-group">
+                <label asp-for="Contents"></label>
+                <textarea asp-for="Contents" rows="21" class="form-control"></textarea>
+                <span asp-validation-for="Contents" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewTags"></label>
+                <input asp-for="NewTags" class="form-control" />
+                <span asp-validation-for="NewTags" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <a asp-action="Index" class="btn btn-default">Back</a>
+        @if (Model.Id > 0)
+        {
+            <a class="btn btn-danger"
+               asp-area="@WebConstants.AdminArea"
+               asp-controller="Articles"
+               asp-action="Delete"
+               asp-route-id="@Model.Id">Delete</a>
+        }
+        <button type="submit" class="btn btn-success">Save Article</button>
+    </div>
+</form>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

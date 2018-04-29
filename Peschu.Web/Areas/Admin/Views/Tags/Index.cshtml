@@ -1,0 +1,37 @@
+﻿@model TagsIndexCompositeModel
+@{
+    ViewData["Title"] = "Tags";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@Html.Partial("_Message")
+
+<div class="row">
+    <div class="panel panel-body">
+        <div class="col-md-6">
+            <form method="post" class="form-inline" asp-area="@WebConstants.AdminArea" asp-controller="Tags" asp-action="Create">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    @*<label asp-for="TagForm.Title"></label>*@
+                    <input asp-for="TagForm.Title" class="form-control" />
+                    <span asp-validation-for="TagForm.Title" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-sm btn-success">Add Tag(s)</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        @foreach (var tag in Model.Tags)
+        {
+            <a class="btn btn-sm btn-default" asp-area="@WebConstants.AdminArea" asp-controller="Tags" asp-action="Details" asp-route-id="@tag.Id">@tag.Title</a>
+        }
+    </div>
+</div>
+
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

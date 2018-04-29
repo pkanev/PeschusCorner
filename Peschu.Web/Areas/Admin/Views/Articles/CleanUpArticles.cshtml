@@ -1,0 +1,12 @@
+﻿@model SimpleUserModel
+@{
+    ViewData["Title"] = $"Clean up articles for {Model.Email}";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>Warning, cleaning up the articles for @Model.Email will permanently remove them from the database!</h4>
+
+<a class="btn btn-sm btn-default" asp-area="@WebConstants.AdminArea" asp-controller="Users" asp-action="Index">Return to all users</a>
+<a class="btn btn-sm btn-danger" asp-area="@WebConstants.AdminArea" asp-controller="Articles" asp-action="CleanUp" asp-route-id="@Model.Id">Clean up articles</a>
+

@@ -1,0 +1,9 @@
+﻿@model ArticleDeleteModel
+@{
+    ViewData["Title"] = $"Delete {Model.Title}";
+}
+
+<h2>Do you want to delete '@Model.Title'?</h2>
+<a asp-area="Admin" asp-controller="Articles" asp-action="Index" class="btn btn-sm btn-default">Back to Articles</a>
+<a asp-area="Admin" asp-controller="Articles" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-sm btn-default">Back to @Model.Title</a>
+<a asp-area="Admin" asp-controller="Articles" asp-action="Destroy" asp-route-id="@Model.Id" class="btn btn-sm btn-danger">Delete</a>

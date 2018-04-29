@@ -1,0 +1,18 @@
+﻿@model ResourceDetailsModel
+
+@if (Model.ResourceType == ResourceType.Url)
+{
+    <a href="@Model.Url" title="@Model.Title" target="_blank">@Model.Title</a>
+}
+@if (Model.ResourceType == ResourceType.Image)
+{
+    <img height="315" src="@Model.Url" alt="@Model.Title" />
+}
+@if (Model.ResourceType == ResourceType.Audio)
+{
+    @Model.Url
+}
+@if (Model.ResourceType == ResourceType.Video)
+{
+    <iframe width="560" height="315" src="@Model.EmbedUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+}

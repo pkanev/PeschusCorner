@@ -1,0 +1,30 @@
+﻿@model ArticleListingModel
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">@Model.Subject: @Model.Title</h3>
+    </div>
+    <div class="panel-body">
+        <div class="well">
+            <label>Author:</label>
+            <span>@Model.Author</span>
+            <p>@Model.Description</p>
+        </div>
+        <div>
+            <label>Created:</label>
+            <span>@Model.Created.ToLocalTime().ToString("dd MMMM yyyy")</span>
+        </div>
+        <div>
+            <a class="btn btn-warning"
+               asp-area="@WebConstants.AdminArea"
+               asp-controller="Articles"
+               asp-action="Edit"
+               asp-route-id="@Model.Id">Edit</a>
+            <a class="btn btn-danger"
+               asp-area="@WebConstants.AdminArea"
+               asp-controller="Articles"
+               asp-action="Delete"
+               asp-route-id="@Model.Id">Delete</a>
+        </div>
+    </div>
+</div>

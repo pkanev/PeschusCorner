@@ -1,0 +1,14 @@
+﻿@model IEnumerable<SelectListItem>
+@{
+    ViewData["Title"] = "Add Role To User";
+}
+
+<h2>@ViewData["Title"]</h2>
+<div class="row">
+    <form method="post" class="col-md-2">
+        <select name="role" asp-items="@Model" class="form-control"></select>
+        <a class="btn btn-sm btn-default" asp-area="@WebConstants.AdminArea" asp-controller="Users" asp-action="Roles" asp-route-id='@Html.ViewContext.RouteData.Values["id"]'>Back</a>
+        <button type="submit" class="btn btn-sm btn-default">Save Role</button>
+    </form>
+        
+</div>

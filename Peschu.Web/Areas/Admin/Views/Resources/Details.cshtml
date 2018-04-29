@@ -1,0 +1,29 @@
+﻿@model AllArticlesPerResourcePageListingModel
+@{
+    ViewData["Title"] = $"Articles for '{Model.Resource.Title}'";
+}
+<div class="row">
+    <div class="col-md-10">
+        <h2>
+            @ViewData["Title"]
+            <a asp-area="@WebConstants.AdminArea" asp-controller="Resources" asp-action="Edit" asp-route-id="@Model.Resource.Id" class="btn btn-sm btn-warning">Edit resource</a>
+            <a asp-area="@WebConstants.AdminArea" asp-controller="Resources" asp-action="Delete" asp-route-id="@Model.Resource.Id" class="btn btn-sm btn-danger">Delete resource</a>
+        </h2>
+    </div>
+</div>
+
+<div class="row">
+    @await Html.PartialAsync("_ResourceUrl", Model.Resource)
+</div>
+
+<div class="row">
+    <div class="col-md-10">
+        @foreach (var article in Model.Articles)
+        {
+            @await Html.PartialAsync("_ArticleList", article)
+        }
+    </div>
+</div>
+
+@Html.Partial("_Pagination", Model)
+

@@ -1,0 +1,35 @@
+﻿@model AllResourcesPageListingModel
+@{
+    ViewData["Title"] = "Resources";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@Html.Partial("_Message")
+
+<div class="row">
+    @foreach (var resource in Model.Resources)
+    {
+        <div class="well">
+            <a class="btn btn-sm btn-default"
+               asp-area="@WebConstants.AdminArea"
+               asp-controller="Resources"
+               asp-action="Details"
+               asp-route-id="@resource.Id">Details</a>
+            <a class="btn btn-sm btn-warning"
+               asp-area="@WebConstants.AdminArea"
+               asp-controller="Resources"
+               asp-action="Edit"
+               asp-route-id="@resource.Id">Edit</a>
+            <a class="btn btn-sm btn-danger"
+               asp-area="@WebConstants.AdminArea"
+               asp-controller="Resources"
+               asp-action="Delete"
+               asp-route-id="@resource.Id">Delete</a>
+            <span>&nbsp;</span>
+            <label>@resource.ResourceType: @resource.Title</label>
+        </div>
+    }
+</div>
+
+@Html.Partial("_Pagination", Model)

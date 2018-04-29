@@ -1,0 +1,10 @@
+﻿@model ArticlesWithTagsPageListingModel
+@{
+    ViewData["Title"] = "Programming Articles";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@await Html.PartialAsync("_ArticlesListing", Model.Articles)
+
+@await Html.PartialAsync("_Pagination", Model)

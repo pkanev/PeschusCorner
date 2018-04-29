@@ -1,0 +1,9 @@
+﻿@if (TempData[WebConstants.TempDataSuccessMessageKey] != null)
+{
+    <h4 class="text-info">@TempData[WebConstants.TempDataSuccessMessageKey]</h4>
+}
+
+@if (TempData[WebConstants.TempDataErrorMessageKey] != null)
+{
+    <h4 class="text-danger">@TempData[WebConstants.TempDataErrorMessageKey]</h4>
+}

@@ -1,0 +1,9 @@
+﻿@model IEnumerable<TagListingModel>
+
+<div class="tags-container">
+    <h3>Tags</h3>
+    @foreach (var tag in Model)
+    {
+        <a class="btn btn-sm btn-default" asp-area="" asp-controller="Tags" asp-action="Index" asp-route-id="@tag.Id">@tag.Title</a>
+    }
+</div>

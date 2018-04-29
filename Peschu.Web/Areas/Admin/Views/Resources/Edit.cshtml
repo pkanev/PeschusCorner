@@ -1,0 +1,32 @@
+﻿@model ResourceFormContainerModel
+@{
+    ViewData["Title"] = "Edit resource";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@Html.Partial("_Message")
+
+<form method="post" asp-route-articleid="@Model.ArticleId">
+    @await Html.PartialAsync("_ResourceForm", Model.Form)
+    @if (Model.ArticleId > 0)
+    {
+        <a class="btn btn-default"
+           asp-area="@WebConstants.AdminArea"
+           asp-controller="Articles"
+           asp-action="Edit"
+           asp-route-id="@Model.ArticleId">Back to article</a>
+    }
+    <a class="btn btn-default"
+       asp-area="@WebConstants.AdminArea"
+       asp-controller="Resources"
+       asp-action="Details"
+       asp-route-id="@Model.Form.Id">Back to details</a>
+    <a class="btn btn-default"
+       asp-area="@WebConstants.AdminArea"
+       asp-controller="Resources"
+       asp-action="Index"
+       asp-route-id="@Model.Form.Id">Back to resources</a>
+    <button type="submit" class="btn btn-success">Save Resource</button>
+</form>
+

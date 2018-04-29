@@ -1,0 +1,11 @@
+﻿@model DestroyUserModel
+@{
+    ViewData["Title"] = $"Delete {Model.Email}";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>Are you sure that you want to delete @Model.Email?</h4>
+
+<a class="btn btn-sm btn-default" asp-area="@WebConstants.AdminArea" asp-controller="Users" asp-action="Index">Return to all</a>
+<a class="btn btn-sm btn-danger" asp-area="@WebConstants.AdminArea" asp-controller="Users" asp-action="Destroy" asp-route-id="@Model.Id">DELETE</a>

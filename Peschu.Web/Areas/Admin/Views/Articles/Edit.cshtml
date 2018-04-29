@@ -1,0 +1,58 @@
+﻿@model ArticleContainerModel
+@{
+    ViewData["Title"] = $"Edit {Model.ArticleFormModel.Title}";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@Html.Partial("_Message")
+
+<div class="btn-group" role="group">
+    @foreach (var tag in Model.Tags)
+    {
+        <div class="btn-group" role="group">
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="tag_@tag.Id" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @tag.Title
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a asp-area="@WebConstants.AdminArea" asp-controller="Tags" asp-action="Edit" asp-route-id="@tag.Id">Modify</a></li>
+                    <li><a asp-area="Admin" asp-controller="Tags" asp-action="Remove" asp-route-id="@tag.Id" asp-route-articleid="@Model.ArticleFormModel.Id">Remove</a></li>
+                </ul>
+            </div>
+        </div>
+    }
+</div>
+
+@Html.Partial("_ArticleForm", Model.ArticleFormModel)
+
+<h3>Resources</h3>
+<div class="row">
+    <div class="col-md-6">
+        <div class="well">
+            <a class="btn btn-default" asp-area="@WebConstants.AdminArea" asp-controller="Resources" asp-action="Create" asp-route-id="@Model.ArticleFormModel.Id">Add a Resource</a>
+        </div>
+        @foreach (var resource in Model.Resources)
+        {
+            <div class="well">
+                <a class="btn btn-sm btn-warning"
+                   asp-area="@WebConstants.AdminArea"
+                   asp-controller="Resources"
+                   asp-action="Edit"
+                   asp-route-id="@resource.Id"
+                   asp-route-articleid="@Model.ArticleFormModel.Id">Modify</a>
+                <a class="btn btn-sm btn-danger"
+                   asp-area="@WebConstants.AdminArea"
+                   asp-controller="Resources"
+                   asp-action="Remove"
+                   asp-route-id="@resource.Id"
+                   asp-route-articleid="@Model.ArticleFormModel.Id">Remove</a>
+                <span>&nbsp;</span>
+                <label>@resource.ResourceType:</label>
+                <span class="panel-title">@resource.Title</span>
+            </div>
+        }
+    </div>
+</div>
+

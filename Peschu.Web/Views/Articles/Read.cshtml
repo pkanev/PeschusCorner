@@ -1,0 +1,38 @@
+﻿@model ArticleReadContainer
+@{
+    ViewData["Title"] = Model.Article.Title;
+}
+
+<h2>@Model.Article.Subject: @ViewData["Title"]</h2>
+
+<div class="row margin-bottom-1em">
+    <div class="btn-group" role="group">
+        @foreach (var tag in Model.Tags)
+        {
+            <a class="btn btn-sm btn-default" asp-area="" asp-controller="Tags" asp-action="Details" asp-route-id="@tag.Id">@tag.Title</a>
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div class="well">
+        <div class="subheader">
+            <label>Posted:</label>
+            <span>@Model.Article.Created</span>
+        </div>
+        <div class="article-text">
+            @foreach (var paragraph in Model.Article.Paragraphs)
+            {
+                <p>@paragraph</p>
+            }
+        </div>
+        <div class="resource-container">
+            @foreach (var resource in Model.Resources)
+            {
+                <div class="centered-text">
+                    @await Html.PartialAsync("_ResourceUrl", resource)
+                </div>
+           }
+        </div>
+    </div>
+</div>

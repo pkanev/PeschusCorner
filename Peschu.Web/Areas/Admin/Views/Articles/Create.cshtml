@@ -1,0 +1,8 @@
+﻿@model ArticleFormModel
+@{
+    ViewData["Title"] = "Write an article";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@await Html.PartialAsync("_ArticleForm", Model)

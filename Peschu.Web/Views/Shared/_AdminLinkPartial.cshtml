@@ -1,0 +1,9 @@
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <li><a asp-area="@WebConstants.AdminArea" asp-controller="Home" asp-action="Index"><span class="glyphicon glyphicon-star"></span><span>&nbsp;</span><span>@WebConstants.AdminArea</span></a></li>
+}

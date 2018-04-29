@@ -1,0 +1,25 @@
+﻿@model UserWithRolesModel
+
+@{
+    ViewData["Title"] = "Roles";
+}
+
+<h2>Roles for user @Model.Email</h2>
+
+@Html.Partial("_Message")
+
+<a class="btn btn-sm btn-default" asp-area="@WebConstants.AdminArea" asp-controller="Users" asp-action="AddRoleTo" asp-route-id="@Model.Id">Add Roles</a>
+
+@if (!Model.Roles.Any())
+{
+    <h4>No roles for this user</h4>
+}
+else
+{
+    <ul>
+        @foreach (var role in Model.Roles)
+        {
+            <li>@role <a class="btn btn-sm btn-danger" asp-area="@WebConstants.AdminArea" asp-controller="Users" asp-action="RemoveRoleFrom" asp-route-id="@Model.Id" asp-route-role="@role">Remove</a></li>
+        }
+    </ul>
+}

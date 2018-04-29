@@ -1,0 +1,17 @@
+﻿@model AllArticlesPageListingModel
+@{
+    ViewData["Title"] = "Articles";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@Html.Partial("_Message")
+
+<div class="row">
+    @foreach (var article in Model.Articles)
+    {
+        @await Html.PartialAsync("_ArticleList", article)
+    }
+</div>
+
+@Html.Partial("_Pagination", Model)

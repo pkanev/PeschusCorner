@@ -1,0 +1,17 @@
+﻿@model ResourceFormContainerModel
+@{
+    ViewData["Title"] = "Add resource";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="post">
+    @await Html.PartialAsync("_ResourceForm", Model.Form)
+    <a class="btn btn-default"
+       asp-area="@WebConstants.AdminArea"
+       asp-controller="Articles"
+       asp-action="Edit"
+       asp-route-id="@Model.ArticleId">Back to article</a>
+    <button type="submit" class="btn btn-success">Save Resource</button>
+</form>
+
