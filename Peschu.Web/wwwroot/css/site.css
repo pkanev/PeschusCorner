@@ -108,8 +108,11 @@ a:hover {
 }
 
 .tags-container {
-    padding: 2em;
-    margin-bottom: 20px;
+    margin: 20px auto;
+}
+
+.tags-list {
+    margin-bottom: 0.2em;
 }
 
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {

@@ -1,9 +1,16 @@
 ﻿@model IEnumerable<TagListingModel>
 
-<div class="tags-container">
+
     <h3>Tags</h3>
-    @foreach (var tag in Model)
+    <div class="input-group">
+        <input id="tags-filter" class="form-control" type="text" placeholder="Tags Filter" />
+        <div class="input-group-addon">
+            <span class="input-group-text glyphicon glyphicon-filter"></span>
+        </div>
+    </div>    
+    <div class="tags-container">
+        @foreach (var tag in Model)
     {
-        <a class="btn btn-sm btn-default" asp-area="" asp-controller="Tags" asp-action="Index" asp-route-id="@tag.Id">@tag.Title</a>
+        <a class="btn btn-sm btn-default tags-list" asp-area="" asp-controller="Tags" asp-action="Index" asp-route-id="@tag.Id">@tag.Title</a>
     }
-</div>
+    </div>
