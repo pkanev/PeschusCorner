@@ -6,9 +6,14 @@
     });
 
     function searchTags(searchTerm) {
+        if (searchTerm.length <= 0) {
+            $('.tags-list').show();
+            return;
+        }
+
         $('.tags-list').each(function (index, element) {
             var tag = $(element).text();
-            if (!tag.toLowerCase().includes(searchTerm)) {
+            if (tag.toLowerCase().indexOf(searchTerm) < 0) {
                 $(element).hide();
             } else {
                 $(element).show();
