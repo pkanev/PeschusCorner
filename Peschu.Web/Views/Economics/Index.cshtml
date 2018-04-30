@@ -3,8 +3,6 @@
     ViewData["Title"] = "Economics Articles";
 }
 
-<h2>@ViewData["Title"]</h2>
-
+@Html.Partial("_TitleAndSearchPartial", Model.Search)
 @await Html.PartialAsync("_ArticlesListing", Model.Articles)
-
 @await Html.PartialAsync("_Pagination", Model)

@@ -21,13 +21,19 @@
 
         protected ITagService Tags => this.tags;
 
-        public async Task<IActionResult> Index(int page = 1)
+        public async Task<IActionResult> Index(int page = 1, [FromQuery] string search = "")
         {
+            if (search == null)
+            {
+                search = string.Empty;
+            }
+
             var model = await this.SetupModelPages(page);
-            model.Articles = await this.Articles.GetAllWithTagsAsync(page, this.PageSize);
+            model.Articles = await this.Articles.GetAllWithTagsAsync(page, this.PageSize, search);
             model.Area = string.Empty;
             model.Controller = "Articles";
             model.Action = nameof(Index);
+            model.Search = search;
 
             return View(model);
         }

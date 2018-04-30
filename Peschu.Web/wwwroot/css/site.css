@@ -87,7 +87,12 @@ a:hover {
     border-color: orange;
 }
 
-.btn-default {
+.form-control {
+    color: brown;
+    border-color: brown;
+}
+
+.input-group-addon, .btn-default {
     color: brown;
     background-color: antiquewhite;
     border-color: brown;
@@ -135,6 +140,10 @@ a:hover {
 }
 
 .resource-container {
+}
+
+.search-bar-container {
+    margin-top: 1.5em;
 }
 
 .margin-bottom-0 {

@@ -1,0 +1,11 @@
+﻿@model string
+
+<form asp-area="" asp-controller="Articles" asp-action="Index" method="get">
+    <div class="input-group">
+        <input type="text" value="@Model" name="search" class="form-control" placeholder="Search for...">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+    </div>
+</form>
+

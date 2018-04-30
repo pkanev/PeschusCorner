@@ -152,10 +152,13 @@
                 .Articles
                 .Any(a => a.Id == id);
 
-        public async Task<ICollection<ArticlesWithTagsListingModel>> GetAllWithTagsAsync(int page = 1, int pageSize = 10)
+        public async Task<ICollection<ArticlesWithTagsListingModel>> GetAllWithTagsAsync(int page = 1, int pageSize = 10, string search = "")
             => await this.db
                 .Articles
-                .Where(a => a.IsDeleted == false)
+                .Where(a => 
+                    a.IsDeleted == false
+                    && (search == null || search == string.Empty || a.Title.ToLower().Contains(search.ToLower()))
+                )
                 .OrderByDescending(a => a.Created)
                 .Skip(((page < 1 ? 1 : page) - 1) * pageSize)
                 .Take(pageSize)

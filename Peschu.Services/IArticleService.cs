@@ -43,7 +43,7 @@
 
         Task<IEnumerable<ArticleListingModel>> GetByResourceIdAsync(int id, int page = 1, int pageSize = 10);
 
-        Task<ICollection<ArticlesWithTagsListingModel>> GetAllWithTagsAsync(int page = 1, int pageSize = 10);
+        Task<ICollection<ArticlesWithTagsListingModel>> GetAllWithTagsAsync(int page = 1, int pageSize = 10, string search = "");
 
         Task<ICollection<ArticlesWithTagsListingModel>> GetWithTagsBySubjectAsync(Subject subject, int page = 1, int pageSize = 10);
 

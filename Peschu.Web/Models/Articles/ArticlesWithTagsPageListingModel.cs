@@ -9,5 +9,7 @@
         public IEnumerable<ArticlesWithTagsListingModel> Articles { get; set; }
 
         public bool IsEmpty => this.Articles == null || !this.Articles.Any();
+
+        public string Search { get; set; } = string.Empty;
     }
 }

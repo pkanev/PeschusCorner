@@ -1,0 +1,11 @@
+﻿@model string
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>@ViewData["Title"]</h2>
+    </div>
+    <div class="col-md-6 search-bar-container">
+        @Html.Partial("_ArticleSearchBarPartial", Model)
+    </div>
+</div>
+
