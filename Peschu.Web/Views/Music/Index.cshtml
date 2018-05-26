@@ -1,6 +1,8 @@
 ﻿@model ArticlesWithTagsPageListingModel
 @{
-    ViewData["Title"] = "Music Articles";
+    var meta = "Music Articles";
+    ViewData["Meta"] = meta;
+    ViewData["Title"] = meta;
 }
 @Html.Partial("_TitleAndSearchPartial", Model.Search)
 @await Html.PartialAsync("_ArticlesListing", Model.Articles)

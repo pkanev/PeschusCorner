@@ -1,5 +1,6 @@
 ﻿@model ArticleReadContainer
 @{
+    ViewData["Meta"] = string.Join(',', Model.Tags.Select(t => t.Title));
     ViewData["Title"] = Model.Article.Title;
 }
 

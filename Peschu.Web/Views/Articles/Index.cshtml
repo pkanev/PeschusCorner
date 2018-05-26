@@ -1,6 +1,6 @@
 ﻿@model ArticlesWithTagsPageListingModel
 @{
-    ViewData["Title"] = "All Articles";
+    ViewData["Title"] = "Articles";
 }
 @Html.Partial("_TitleAndSearchPartial", Model.Search)
 @await Html.PartialAsync("_ArticlesListing", Model.Articles)

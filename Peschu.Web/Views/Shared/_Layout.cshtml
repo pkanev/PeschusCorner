@@ -2,8 +2,16 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="description" content="Petar 'Peschu' Kanev's blog on economics, programming and music">
-    <meta name="keywords" content="Economics,Programming,Music,Blog,Tutorials,Peschu,Petar Kanev">
+    <meta name="description" content="Petar 'Peschu' Kanev's blog on economics, programming and music.">
+    @{
+        var keywords = "Economics,Programming,Music,Blog,Tutorials,Peschu,Petar Kanev";
+        string meta = (ViewData["Meta"] ?? string.Empty) as string;
+        if (!string.IsNullOrEmpty(meta))
+        {
+            keywords = $"{keywords},{meta}";
+        }
+    }
+    <meta name="keywords" content="@keywords">
     <meta name="author" content="Petar Kanev">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Peschu's Corner</title>
