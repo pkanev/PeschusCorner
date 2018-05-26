@@ -1,5 +1,6 @@
 ﻿@model ArticlesWithTagsForTagPageListingModel
 @{
+    ViewData["Meta"] = Model.Title;
     ViewData["Title"] = $"Articles for [{Model.Title}]";
 }
 
