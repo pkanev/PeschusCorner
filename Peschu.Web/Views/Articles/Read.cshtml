@@ -10,7 +10,7 @@
     <div class="btn-group" role="group">
         @foreach (var tag in Model.Tags)
         {
-            <a class="btn btn-sm btn-default" asp-area="" asp-controller="Tags" asp-action="Details" asp-route-id="@tag.Id">@tag.Title</a>
+            <a class="btn btn-sm btn-default" asp-area="" asp-controller="Tags" asp-action="Index" asp-route-id="@tag.Id">@tag.Title</a>
         }
     </div>
 </div>
