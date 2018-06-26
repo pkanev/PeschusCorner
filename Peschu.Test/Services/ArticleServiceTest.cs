@@ -5,6 +5,7 @@
     using Peschu.Data;
     using Peschu.Services.Implementations;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Xunit;
@@ -140,6 +141,25 @@
         }
 
         [Fact]
+        public async Task DeletingNonExistingArticleShouldReturnFalse()
+        {
+            // Arrange
+            var articleId = 1;
+
+            // Act
+            var result = await this.service.Delete(articleId);
+            var deletedArticle = this.db.Articles.Find(articleId);
+
+            // Assert
+            result
+                .Should()
+                .BeFalse();
+            deletedArticle
+                .Should()
+                .BeNull();
+        }
+
+        [Fact]
         public async Task CleanupForUserShouldPhysicallyRemoveAllUserArticles()
         {
             // Arrange
@@ -170,22 +190,60 @@
         }
 
         [Fact]
-        public async Task DeletingNonExistingArticleShouldReturnFalse()
+        public async Task GetAllAsyncShouldReturnCorrectPaginatedArticles()
         {
             // Arrange
-            var articleId = 1;
+            var page = 2;
+            var pageSize = 3;
+            var articles = new List<Article>();
+            var articlesCount = 10;
+            for (int i = 1; i < articlesCount + 1; i++)
+            {
+                articles.Add(new Article { Id = i, IsDeleted = false, Created = DateTime.Now.AddDays(-i) });
+            }
+
+
+            this.db.Articles.AddRange(articles);
+            await this.db.SaveChangesAsync();
 
             // Act
-            var result = await this.service.Delete(articleId);
-            var deletedArticle = this.db.Articles.Find(articleId);
+            var result = await this.service.GetAllAsync(page, pageSize);
 
             // Assert
             result
                 .Should()
-                .BeFalse();
-            deletedArticle
-                .Should()
-                .BeNull();
+                .HaveCount(pageSize)
+                .And
+                .Match(r => r.ElementAt(0).Id == 4
+                    && r.ElementAt(pageSize - 1).Id == 4 + pageSize - 1);
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(100)]
+        public async Task TotalShouldReturnCorrectCount(int count)
+        {
+            // Arrange
+            var articles = new List<Article>();
+            for (int i = 1; i <= count; i++)
+            {
+                articles.Add(new Article { Id = i, IsDeleted = false, Created = DateTime.Now.AddDays(-i) });
+            }
+
+            var deletedCount = 10;
+            for (int i = count + 1; i <= count + deletedCount; i++)
+            {
+                articles.Add(new Article { Id = i, IsDeleted = true, Created = DateTime.Now.AddDays(-i) });
+            }
+
+            this.db.Articles.AddRange(articles);
+            await this.db.SaveChangesAsync();
+
+            // Act
+            var result = await this.service.Total();
+
+            // Assert
+            result.Should().Be(count);
         }
 
         [Fact]
